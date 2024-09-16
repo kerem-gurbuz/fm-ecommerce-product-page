@@ -4,6 +4,15 @@
 
 @layer base {
   :root {
+    /* style guide colors */
+    --color-orange: 26, 100%, 55%;
+    --color-pale-orange: 25, 100%, 94%;
+    --color-very-dark-blue: 220, 13%, 13%;
+    --color-dark-grayish-blue: 219, 9%, 45%;
+    --color-grayish-blue: 220, 14%, 75%;
+    --color-light-grayish-blue: 223, 64%, 98%;
+
+    /* shadcn-ui colors */
     --background: 0 0% 100%;
     --foreground: 0 0% 3.9%;
     --card: 0 0% 100%;
@@ -63,6 +72,6 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background font-sans text-foreground;
   }
 }

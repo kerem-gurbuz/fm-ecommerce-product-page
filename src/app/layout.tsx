@@ -1,6 +1,7 @@
-import "@/styles/globals.css";
+import { kumbh_sans } from '@/styles/fonts';
+import '@/styles/globals.css';
 
-export { metadata } from "@/lib/seo/metadata";
+export { metadata } from '@/lib/seo/metadata';
 
 export default function RootLayout({
   children,
@@ -8,7 +9,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${kumbh_sans.variable}`}>
       <body className="antialiased">
         <main>{children}</main>
       </body>
