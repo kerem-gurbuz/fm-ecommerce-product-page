@@ -6,11 +6,11 @@ import { usePathname } from 'next/navigation';
 import { NAVIGATION_LINKS } from '@/lib/constants/navigation-links';
 import { cn } from '@/lib/utils';
 
-type NavLinksProps = {
+type NavbarProps = {
   className?: React.ComponentProps<'nav'>['className'];
 };
 
-export function NavLinks({ className }: NavLinksProps) {
+export function Navbar({ className }: NavbarProps) {
   const pathname = usePathname();
 
   return (
@@ -23,7 +23,7 @@ export function NavLinks({ className }: NavLinksProps) {
               <Link
                 href={href}
                 className={cn(
-                  'text-[15px] leading-[26px] text-dark-grayish-blue transition-colors duration-300 hover:text-very-dark-blue',
+                  'text-[15px] leading-[26px] text-dark-grayish-blue transition-colors duration-300 group-hover:text-very-dark-blue',
                   {
                     'text-very-dark-blue': isActive,
                   },

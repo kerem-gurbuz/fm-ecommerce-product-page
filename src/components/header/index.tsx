@@ -2,7 +2,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import { AvatarUI } from '@/components/header/avatar-ui';
-import { NavLinks } from '@/components/header/nav-links';
+import { NavMenu } from '@/components/header/nav-menu';
+import { Navbar } from '@/components/header/navbar';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
@@ -21,10 +22,12 @@ export function Header({ className }: HeaderProps) {
     >
       <div className="flex h-6 justify-between md:h-[50px]">
         <div className="flex gap-4 md:gap-14">
-          <Button className="pb-[4px] pt-[5px] md:hidden">
-            <MenuIcon className="fill-dark-grayish-blue transition-colors duration-300 hover:fill-very-dark-blue" />
-            <span className="sr-only">Open mobile menu</span>
-          </Button>
+          <NavMenu
+            className="w-[250px]"
+            trigger={
+              <MenuIcon className="fill-dark-grayish-blue transition-colors duration-300 hover:fill-very-dark-blue" />
+            }
+          />
           <Link href="/" className="pb-[3px] pt-[1px] md:py-[15px]">
             <Image
               src="/assets/images/logo.svg"
@@ -34,7 +37,7 @@ export function Header({ className }: HeaderProps) {
               priority
             />
           </Link>
-          <NavLinks className="hidden md:block" />
+          <Navbar className="hidden md:block" />
         </div>
         <div className="flex gap-[22px] md:gap-[46px]">
           <Button className="pb-[1px] pt-[3px] md:pb-[14px] md:pt-[16px]">
