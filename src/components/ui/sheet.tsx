@@ -67,8 +67,10 @@ const SheetContent = React.forwardRef<
       {children}
       {/* <SheetPrimitive.Close className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-secondary"> */}
       <SheetPrimitive.Close className="absolute left-[25px] top-[25px] ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-transparent">
-        <CloseIcon className="fill-dark-grayish-blue transition-colors duration-300 hover:fill-very-dark-blue" />
-        <span className="sr-only">Close</span>
+        <CloseIcon
+          aria-label="Close navigation menu"
+          className="fill-dark-grayish-blue transition-colors duration-300 hover:fill-very-dark-blue"
+        />
       </SheetPrimitive.Close>
     </SheetPrimitive.Content>
   </SheetPortal>

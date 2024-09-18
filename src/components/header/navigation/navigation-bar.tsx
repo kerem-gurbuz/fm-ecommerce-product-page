@@ -6,11 +6,11 @@ import { usePathname } from 'next/navigation';
 import { NAVIGATION_LINKS } from '@/lib/constants/navigation-links';
 import { cn } from '@/lib/utils';
 
-type NavbarProps = {
+type NavigationBarProps = {
   className?: React.ComponentProps<'nav'>['className'];
 };
 
-export function Navbar({ className }: NavbarProps) {
+export function NavigationBar({ className }: NavigationBarProps) {
   const pathname = usePathname();
 
   return (

@@ -2,9 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* style guide colors */
 @layer base {
   :root {
-    /* style guide colors */
     --color-orange: 26, 100%, 55%;
     --color-pale-orange: 25, 100%, 94%;
     --color-very-dark-blue: 220, 13%, 13%;
@@ -12,7 +12,16 @@
     --color-grayish-blue: 220, 14%, 75%;
     --color-light-grayish-blue: 223, 64%, 98%;
 
-    /* shadcn-ui colors */
+    /* additional colors */
+    --color-bright-orange: 26, 100%, 71%;
+    --color-sky-blue: 219, 35%, 92%;
+    --color-pale-sky: 220, 59%, 98%;
+  }
+}
+
+/* shadcn-ui colors */
+@layer base {
+  :root {
     --background: 0 0% 100%;
     --foreground: 0 0% 3.9%;
     --card: 0 0% 100%;

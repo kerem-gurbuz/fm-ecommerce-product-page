@@ -16,16 +16,15 @@ import {
 import { NAVIGATION_LINKS } from '@/lib/constants/navigation-links';
 import { cn } from '@/lib/utils';
 
-type NavMenuProps = {
+const WINDOW_SIZE_DEBOUNCE_DELAY = 200;
+const MD_BREAKPOINT = 768;
+
+type NavigationMenuProps = {
   className?: React.ComponentProps<'div'>['className'];
   trigger: React.ReactNode;
 };
 
-// Auto close on window resize
-const WINDOW_SIZE_DEBOUNCE_DELAY = 200;
-const MD_BREAKPOINT = 768;
-
-export function NavMenu({ className, trigger }: NavMenuProps) {
+export function NavigationMenu({ className, trigger }: NavigationMenuProps) {
   const [open, setOpen] = useState<boolean>(false);
   const pathname = usePathname();
   const { width: windowWidth } = useWindowSize({
@@ -42,7 +41,6 @@ export function NavMenu({ className, trigger }: NavMenuProps) {
   return (
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger className="pb-[4px] pt-[5px] md:hidden">
-        <span className="sr-only">Open navigation menu</span>
         {trigger}
       </SheetTrigger>
       <SheetContent

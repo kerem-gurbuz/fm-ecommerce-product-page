@@ -12,7 +12,11 @@ export function AvatarUI({ className, imageSrc, userName }: AvatarUIProps) {
     <Avatar
       className={cn('cursor-pointer transition-all duration-100', className)}
     >
-      <AvatarImage src={imageSrc} alt={`${userName}'s avatar`} />
+      <AvatarImage
+        src={imageSrc}
+        alt={`${userName}'s avatar`}
+        sizes="(max-width: 767px) 24px, 50px"
+      />
       <AvatarFallback className="text-base font-bold md:text-xl">
         {userName.charAt(0).toUpperCase()}
       </AvatarFallback>

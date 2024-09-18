@@ -1,11 +1,46 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { AvatarUI } from '@/components/header/avatar-ui';
-import { NavMenu } from '@/components/header/nav-menu';
-import { Navbar } from '@/components/header/navbar';
-import { Button } from '@/components/ui/button';
+import {
+  MenuIcon,
+  NavigationBar,
+  NavigationMenu,
+} from '@/components/header/navigation';
+import { CartIcon, ShoppingCart } from '@/components/header/shopping-cart';
+import { AvatarUI } from '@/components/header/user-profile';
 import { cn } from '@/lib/utils';
+import type { CartItemType } from '@/types';
+
+// TODO: Implement global state management system for the shopping cart
+
+const CART_ITEMS: CartItemType[] = [
+  {
+    id: 'product-1',
+    productName: 'Fall Limited Edition Sneakers',
+    imageSrc: '/assets/images/image-product-1-thumbnail.jpg',
+    price: 125,
+    quantity: 3,
+  },
+  {
+    id: 'product-3',
+    productName: 'Fall Limited Edition Sneakers',
+    imageSrc: '/assets/images/image-product-3-thumbnail.jpg',
+    price: 150,
+    quantity: 4,
+  },
+  {
+    id: 'product-4',
+    productName: 'Fall Limited Edition Sneakers',
+    imageSrc: '/assets/images/image-product-4-thumbnail.jpg',
+    price: 200,
+    quantity: 1,
+  },
+];
+
+const CART_TOTAL_QUANTITY = CART_ITEMS.reduce(
+  (acc, item) => acc + item.quantity,
+  0,
+);
 
 type HeaderProps = {
   className?: React.ComponentProps<'header'>['className'];
@@ -16,16 +51,19 @@ export function Header({ className }: HeaderProps) {
     <header
       id="header"
       className={cn(
-        'border-b border-b-[hsl(219,35%,92%)] px-6 pb-[24px] pt-[19px] md:pb-[34px] md:pt-[28px] xl:px-0',
+        'border-b border-b-sky-blue px-6 pb-[24px] pt-[19px] md:pb-[34px] md:pt-[28px] xl:px-0',
         className,
       )}
     >
       <div className="flex h-6 justify-between md:h-[50px]">
         <div className="flex gap-4 md:gap-14">
-          <NavMenu
+          <NavigationMenu
             className="w-[250px]"
             trigger={
-              <MenuIcon className="fill-dark-grayish-blue transition-colors duration-300 hover:fill-very-dark-blue" />
+              <MenuIcon
+                aria-label="Open navigation menu"
+                className="fill-dark-grayish-blue transition-colors duration-300 hover:fill-very-dark-blue"
+              />
             }
           />
           <Link href="/" className="pb-[3px] pt-[1px] md:py-[15px]">
@@ -37,12 +75,14 @@ export function Header({ className }: HeaderProps) {
               priority
             />
           </Link>
-          <Navbar className="hidden md:block" />
+          <NavigationBar className="hidden md:block" />
         </div>
         <div className="flex gap-[22px] md:gap-[46px]">
-          <Button className="pb-[1px] pt-[3px] md:pb-[14px] md:pt-[16px]">
-            <CartIcon className="fill-dark-grayish-blue transition-colors duration-300 hover:fill-very-dark-blue" />
-          </Button>
+          <ShoppingCart
+            className="h-[256px] w-[360px]"
+            cartItems={CART_ITEMS}
+            trigger={<CartIcon cartTotalQuantity={CART_TOTAL_QUANTITY} />}
+          />
           <AvatarUI
             className="h-6 w-6 hover:border-2 hover:border-orange md:h-[50px] md:w-[50px]"
             imageSrc="/assets/images/image-avatar.png"
@@ -51,35 +91,5 @@ export function Header({ className }: HeaderProps) {
         </div>
       </div>
     </header>
-  );
-}
-
-function MenuIcon(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="16"
-      height="15"
-      fill="none"
-      fillRule="evenodd"
-    >
-      <path d="M16 12v3H0v-3h16Zm0-6v3H0V6h16Zm0-6v3H0V0h16Z" />
-    </svg>
-  );
-}
-
-function CartIcon(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="22"
-      height="20"
-      fill="none"
-      fillRule="evenodd"
-    >
-      <path d="M20.925 3.641H3.863L3.61.816A.896.896 0 0 0 2.717 0H.897a.896.896 0 1 0 0 1.792h1l1.031 11.483c.073.828.52 1.726 1.291 2.336C2.83 17.385 4.099 20 6.359 20c1.875 0 3.197-1.87 2.554-3.642h4.905c-.642 1.77.677 3.642 2.555 3.642a2.72 2.72 0 0 0 2.717-2.717 2.72 2.72 0 0 0-2.717-2.717H6.365c-.681 0-1.274-.41-1.53-1.009l14.321-.842a.896.896 0 0 0 .817-.677l1.821-7.283a.897.897 0 0 0-.87-1.114ZM6.358 18.208a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm10.015 0a.926.926 0 0 1 0-1.85.926.926 0 0 1 0 1.85Zm2.021-7.243-13.8.81-.57-6.341h15.753l-1.383 5.53Z" />
-    </svg>
   );
 }

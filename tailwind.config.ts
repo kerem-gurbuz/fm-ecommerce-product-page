@@ -27,6 +27,11 @@ const config: Config = {
         'grayish-blue': 'hsl(var(--color-grayish-blue))',
         'light-grayish-blue': 'hsl(var(--color-light-grayish-blue))',
 
+        // additional colors
+        'bright-orange': 'hsl(var(--color-bright-orange))',
+        'sky-blue': 'hsl(var(--color-sky-blue))',
+        'pale-sky': 'hsl(var(--color-pale-sky))',
+
         // shadcn-ui colors
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
