@@ -7,7 +7,7 @@ import {
   NavigationMenu,
 } from '@/components/header/navigation';
 import { CartIcon, ShoppingCart } from '@/components/header/shopping-cart';
-import { AvatarUI } from '@/components/header/user-profile';
+import { AvatarUI, UserMenuDropdown } from '@/components/header/user-menu';
 import { cn } from '@/lib/utils';
 import type { CartItemType } from '@/types';
 
@@ -83,10 +83,15 @@ export function Header({ className }: HeaderProps) {
             cartItems={CART_ITEMS}
             trigger={<CartIcon cartTotalQuantity={CART_TOTAL_QUANTITY} />}
           />
-          <AvatarUI
-            className="h-6 w-6 hover:border-2 hover:border-orange md:h-[50px] md:w-[50px]"
-            imageSrc="/assets/images/image-avatar.png"
-            userName="Kerem Gurbuz"
+          <UserMenuDropdown
+            className="w-[150px]"
+            trigger={
+              <AvatarUI
+                className="h-6 w-6 hover:border-2 hover:border-orange md:h-[50px] md:w-[50px]"
+                imageSrc="/assets/images/image-avatar.png"
+                userName="Kerem Gurbuz"
+              />
+            }
           />
         </div>
       </div>

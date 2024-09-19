@@ -70,7 +70,7 @@ export function ShoppingCart({
             {cartItems.map((cartItem) => (
               <CartItem key={cartItem.id} cartItem={cartItem} />
             ))}
-            <Button className="hover:bg-bright-orange w-full rounded-[10px] bg-orange py-[18px] text-base font-bold leading-[20px] text-very-dark-blue transition-colors duration-300">
+            <Button className="w-full rounded-[10px] bg-orange py-[18px] text-base font-bold leading-[20px] text-very-dark-blue transition-colors duration-300 hover:bg-bright-orange">
               Checkout
             </Button>
           </div>

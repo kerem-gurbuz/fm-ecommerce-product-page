@@ -1,1 +1,0 @@
-export { AvatarUI } from "@/components/header/user-profile/avatar-ui";
