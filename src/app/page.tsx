@@ -1,7 +1,14 @@
+import { ProductImageGallery } from '@/components/product-image-gallery';
+
 export default function HomePage() {
   return (
-    <div id="homepage">
-      <h1 className="text-3xl font-bold mt-40 text-center">Homepage</h1>
-    </div>
+    <main id="homepage" className="flex-1 pb-[88px] md:pb-[132px] md:pt-[90px]">
+      <div className="mx-auto max-w-[1015px] lg:px-5 xl:px-0">
+        <div className="flex flex-col lg:flex-row lg:justify-between">
+          <ProductImageGallery />
+          <div className="bg-red-900"></div>
+        </div>
+      </div>
+    </main>
   );
 }

@@ -8,34 +8,10 @@ import {
 } from '@/components/header/navigation';
 import { CartIcon, ShoppingCart } from '@/components/header/shopping-cart';
 import { AvatarUI, UserMenuDropdown } from '@/components/header/user-menu';
+import { CART_ITEMS } from '@/lib/data/cart-items';
 import { cn } from '@/lib/utils';
-import type { CartItemType } from '@/types';
 
 // TODO: Implement global state management system for the shopping cart
-
-const CART_ITEMS: CartItemType[] = [
-  {
-    id: 'product-1',
-    productName: 'Fall Limited Edition Sneakers',
-    imageSrc: '/assets/images/image-product-1-thumbnail.jpg',
-    price: 125,
-    quantity: 3,
-  },
-  {
-    id: 'product-3',
-    productName: 'Fall Limited Edition Sneakers',
-    imageSrc: '/assets/images/image-product-3-thumbnail.jpg',
-    price: 150,
-    quantity: 4,
-  },
-  {
-    id: 'product-4',
-    productName: 'Fall Limited Edition Sneakers',
-    imageSrc: '/assets/images/image-product-4-thumbnail.jpg',
-    price: 200,
-    quantity: 1,
-  },
-];
 
 const CART_TOTAL_QUANTITY = CART_ITEMS.reduce(
   (acc, item) => acc + item.quantity,
