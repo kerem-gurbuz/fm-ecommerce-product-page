@@ -18,6 +18,7 @@ import type { ProductImageType } from '@/types';
 import './carousel.css';
 
 const WINDOW_SIZE_DEBOUNCE_DELAY = 100;
+const SM_BREAKPOINT = 445;
 const MD_BREAKPOINT = 768;
 
 type CarouselType = {
@@ -75,22 +76,23 @@ export function Carousel({
   } = usePrevNextButtons(emblaMainApi);
 
   return (
-    <div className="embla mx-auto w-full md:max-w-[720px] lg:mx-0 lg:max-w-[445px]">
-      <div
-        ref={emblaMainRef}
-        className="embla__viewport relative md:rounded-[15px]"
-      >
+    <div className="embla relative">
+      <div ref={emblaMainRef} className="embla__viewport md:rounded-[15px]">
         <div className="embla__container">
           {slides.map((slide, index) => (
             <div
               key={index}
-              className="embla__slide relative h-[300px] max-h-dvh min-[445px]:h-[445px]"
+              className={cn('embla__slide relative h-[300px] max-h-dvh', {
+                'h-[445px]': SM_BREAKPOINT <= windowWidth,
+                'h-[550px]': isInModal,
+              })}
             >
               <Image
                 src={slide.src}
                 alt={`Product image ${index + 1}`}
                 className="object-cover object-top"
-                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 720px, 445px"
+                sizes={`(max-width: 768px) 100vw, (max-width: 1024px) 720px, ${isInModal ? '550px' : '445px'}`}
+                quality={100}
                 fill
               />
             </div>
@@ -99,8 +101,8 @@ export function Carousel({
         <PrevButton
           className={cn(
             'absolute left-0 top-1/2 h-10 w-10 -translate-y-1/2 translate-x-4 rounded-full bg-white stroke-very-dark-blue transition-colors duration-300 hover:stroke-orange',
-            { 'h-14 w-14 -translate-x-1/2': isInModal },
-            { hidden: windowWidth >= MD_BREAKPOINT && !isInModal },
+            { 'top-[calc(550px/2)] h-14 w-14 -translate-x-1/2': isInModal },
+            { hidden: MD_BREAKPOINT <= windowWidth && !isInModal },
           )}
           onClick={onPrevButtonClick}
           disabled={prevBtnDisabled}
@@ -108,8 +110,8 @@ export function Carousel({
         <NextButton
           className={cn(
             'absolute right-0 top-1/2 h-10 w-10 -translate-x-4 -translate-y-1/2 rounded-full bg-white stroke-very-dark-blue transition-colors duration-300 hover:stroke-orange',
-            { 'h-14 w-14 translate-x-1/2': isInModal },
-            { hidden: windowWidth >= MD_BREAKPOINT && !isInModal },
+            { 'top-[calc(550px/2)] h-14 w-14 translate-x-1/2': isInModal },
+            { hidden: MD_BREAKPOINT <= windowWidth && !isInModal },
           )}
           onClick={onNextButtonClick}
           disabled={nextBtnDisabled}
@@ -117,7 +119,7 @@ export function Carousel({
       </div>
       {/* Thumbs container */}
       <div className="mt-8 hidden md:block">
-        <div className="mx-auto w-full max-w-[445px]" ref={emblaThumbsRef}>
+        <div className="mx-auto w-full max-w-[449px]" ref={emblaThumbsRef}>
           <div className="flex justify-between">
             {slides.map((slide, index) => (
               <Thumb

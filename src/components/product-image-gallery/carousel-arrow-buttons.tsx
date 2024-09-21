@@ -1,6 +1,8 @@
 import type { EmblaCarouselType } from 'embla-carousel';
 import { useCallback, useEffect, useState } from 'react';
 
+import { NextIcon } from '@/components/product-image-gallery/next-icon';
+import { PreviousIcon } from '@/components/product-image-gallery/previous-icon';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
@@ -47,25 +49,8 @@ export const usePrevNextButtons = (
   };
 };
 
-function PreviousIcon(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="12"
-      height="18"
-      fill="none"
-      fillRule="evenodd"
-      strokeWidth="3"
-    >
-      <path d="M11 1 3 9l8 8" />
-    </svg>
-  );
-}
-
 export function PrevButton(props: React.ComponentPropsWithRef<'button'>) {
   const { className, children, ...restProps } = props;
-
   return (
     <Button className={cn('z-10', className)} {...restProps}>
       {children || <PreviousIcon />}
@@ -73,25 +58,8 @@ export function PrevButton(props: React.ComponentPropsWithRef<'button'>) {
   );
 }
 
-function NextIcon(props: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="13"
-      height="18"
-      fill="none"
-      fillRule="evenodd"
-      strokeWidth="3"
-    >
-      <path d="m2 1 8 8-8 8" />
-    </svg>
-  );
-}
-
 export function NextButton(props: React.ComponentPropsWithRef<'button'>) {
   const { className, children, ...restProps } = props;
-
   return (
     <Button className={cn('z-10', className)} {...restProps}>
       {children || <NextIcon />}

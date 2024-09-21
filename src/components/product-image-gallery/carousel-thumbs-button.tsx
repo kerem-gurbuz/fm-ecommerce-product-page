@@ -19,7 +19,7 @@ export function Thumb({ index, slide, selected, onClick }: ThumbType) {
         { 'border-orange': selected },
       )}
     >
-      <div className="relative aspect-square h-[88px] overflow-hidden rounded-[10px]">
+      <div className="relative aspect-square h-[88px] overflow-hidden rounded-[10px] bg-white">
         <Image
           src={slide.thumbnail}
           alt={`Product image ${index + 1}`}
@@ -28,6 +28,7 @@ export function Thumb({ index, slide, selected, onClick }: ThumbType) {
             { 'opacity-25': selected },
           )}
           sizes="88px"
+          quality={75}
           fill
         />
       </div>
