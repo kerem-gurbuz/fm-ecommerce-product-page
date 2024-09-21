@@ -1,6 +1,7 @@
 'use client';
 
 import type { EmblaOptionsType } from 'embla-carousel';
+import Autoplay, { type AutoplayOptionsType } from 'embla-carousel-autoplay';
 import useEmblaCarousel from 'embla-carousel-react';
 import Image from 'next/image';
 import { useCallback, useEffect, useState } from 'react';
@@ -22,20 +23,27 @@ const MD_BREAKPOINT = 768;
 type CarouselType = {
   slides: ProductImageType[];
   isInModal?: boolean;
-  options?: EmblaOptionsType;
+  carouselOptions?: EmblaOptionsType;
+  autoplayOptions?: AutoplayOptionsType;
 };
 
-export function Carousel({ slides, isInModal = false, options }: CarouselType) {
+export function Carousel({
+  slides,
+  isInModal = false,
+  carouselOptions,
+  autoplayOptions,
+}: CarouselType) {
   const { width: windowWidth = 0 } = useWindowSize({
     initializeWithValue: false,
     debounceDelay: WINDOW_SIZE_DEBOUNCE_DELAY,
   });
 
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const [emblaMainRef, emblaMainApi] = useEmblaCarousel(options);
+  const [emblaMainRef, emblaMainApi] = useEmblaCarousel(carouselOptions, [
+    Autoplay(autoplayOptions),
+  ]);
   const [emblaThumbsRef, emblaThumbsApi] = useEmblaCarousel({
     containScroll: 'keepSnaps',
-    dragFree: true,
   });
 
   const onThumbClick = useCallback(

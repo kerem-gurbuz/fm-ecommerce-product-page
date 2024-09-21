@@ -13,26 +13,20 @@ type ThumbType = {
 export function Thumb({ index, slide, selected, onClick }: ThumbType) {
   return (
     <div
+      onClick={onClick}
       className={cn(
-        'rounded-[12px] border-2 border-transparent transition-colors duration-300',
-        {
-          'border-orange': selected,
-        },
+        'rounded-[12px] border-2 border-transparent transition-colors duration-300 hover:cursor-pointer',
+        { 'border-orange': selected },
       )}
     >
-      <div
-        className={cn(
-          'relative aspect-square h-[88px] overflow-hidden rounded-[10px] transition-opacity duration-300',
-          {
-            'opacity-25': selected,
-          },
-        )}
-        onClick={onClick}
-      >
+      <div className="relative aspect-square h-[88px] overflow-hidden rounded-[10px]">
         <Image
           src={slide.thumbnail}
           alt={`Product image ${index + 1}`}
-          className="object-cover object-center"
+          className={cn(
+            'object-cover object-center transition-opacity duration-300 hover:opacity-50',
+            { 'opacity-25': selected },
+          )}
           sizes="88px"
           fill
         />
