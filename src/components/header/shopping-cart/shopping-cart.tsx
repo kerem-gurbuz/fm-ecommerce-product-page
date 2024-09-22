@@ -50,7 +50,7 @@ export function ShoppingCart({
       </PopoverTrigger>
       <PopoverContent
         className={cn(
-          'overflow-hidden rounded-[10px] bg-white shadow-[0px_20px_50px_-20px_hsla(var(--color-very-dark-blue),0.5)]',
+          'flex flex-col overflow-hidden rounded-[10px] bg-white shadow-[0px_20px_50px_-20px_hsla(var(--color-very-dark-blue),0.5)]',
           className,
         )}
         side="bottom"
@@ -58,23 +58,31 @@ export function ShoppingCart({
         sideOffset={calculateSideOffset()}
         alignOffset={calculateAlignOffset()}
       >
-        <ScrollArea
-          type="scroll"
-          scrollHideDelay={1000}
-          className="h-full w-full rounded-[10px]"
-        >
-          <div className="border-b border-b-sky-blue p-6 pb-[27px]">
-            <h2 className="text-base font-bold leading-[20px]">Cart</h2>
+        <div className="border-b border-b-sky-blue p-6 pb-[27px]">
+          <h2 className="text-base font-bold leading-[20px]">Cart</h2>
+        </div>
+        {cartItems.length > 0 ? (
+          <ScrollArea
+            type="scroll"
+            scrollHideDelay={1000}
+            className="h-full w-full flex-1 rounded-[10px]"
+          >
+            <div className="space-y-6 p-6 pb-8">
+              {cartItems.map((cartItem) => (
+                <CartItem key={cartItem.id} cartItem={cartItem} />
+              ))}
+              <Button className="w-full rounded-[10px] bg-orange py-[18px] text-base font-bold leading-[20px] text-very-dark-blue transition-colors duration-300 hover:bg-bright-orange">
+                Checkout
+              </Button>
+            </div>
+          </ScrollArea>
+        ) : (
+          <div className="flex flex-1 items-center justify-center">
+            <p className="text-base font-bold leading-[26px] text-dark-grayish-blue">
+              Your cart is empty.
+            </p>
           </div>
-          <div className="space-y-6 p-6 pb-8">
-            {cartItems.map((cartItem) => (
-              <CartItem key={cartItem.id} cartItem={cartItem} />
-            ))}
-            <Button className="w-full rounded-[10px] bg-orange py-[18px] text-base font-bold leading-[20px] text-very-dark-blue transition-colors duration-300 hover:bg-bright-orange">
-              Checkout
-            </Button>
-          </div>
-        </ScrollArea>
+        )}
       </PopoverContent>
     </Popover>
   );

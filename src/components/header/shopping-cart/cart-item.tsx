@@ -10,29 +10,29 @@ type CartItemProps = {
 };
 
 export function CartItem({ cartItem }: CartItemProps) {
-  const { productName, imageSrc, price, quantity } = cartItem;
+  const { product, quantity } = cartItem;
 
   return (
     <Card className="flex items-center justify-between">
       <div className="flex gap-4">
         <div className="relative h-[52px] w-[50px] overflow-hidden rounded-sm">
           <Image
-            src={imageSrc}
-            alt={productName}
+            src={product.images[0].thumbnail}
+            alt={product.name}
             className="object-cover object-center"
             sizes="50px"
             fill
           />
         </div>
         <div className="text-[16px] leading-[26px] text-dark-grayish-blue">
-          <CardTitle>{productName}</CardTitle>
+          <CardTitle>{product.name}</CardTitle>
           <CardContent>
             <p className="flex justify-start gap-1">
               <span>
-                ${price.toFixed(2)} x {quantity} =
+                ${product.price.toFixed(2)} x {quantity} =
               </span>
               <span className="font-bold text-very-dark-blue">
-                ${(price * quantity).toFixed(2)}
+                ${(product.price * quantity).toFixed(2)}
               </span>
             </p>
           </CardContent>
