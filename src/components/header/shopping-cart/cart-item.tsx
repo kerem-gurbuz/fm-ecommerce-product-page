@@ -3,14 +3,20 @@ import Image from 'next/image';
 import { TrashCanIcon } from '@/components/header/shopping-cart';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardTitle } from '@/components/ui/card';
-import type { CartItemType } from '@/types';
+import { calculateCurrentPrice } from '@/lib/utils';
+import type { ShoppingCartItemType } from '@/models/types';
 
 type CartItemProps = {
-  cartItem: CartItemType;
+  cartItem: ShoppingCartItemType;
 };
 
 export function CartItem({ cartItem }: CartItemProps) {
   const { product, quantity } = cartItem;
+
+  const currentPrice = calculateCurrentPrice(
+    product.price,
+    product.discountPercentage,
+  );
 
   return (
     <Card className="flex items-center justify-between">
@@ -27,14 +33,14 @@ export function CartItem({ cartItem }: CartItemProps) {
         <div className="text-[16px] leading-[26px] text-dark-grayish-blue">
           <CardTitle>{product.name}</CardTitle>
           <CardContent>
-            <p className="flex justify-start gap-1">
+            <div className="flex justify-start gap-1">
               <span>
-                ${product.price.toFixed(2)} x {quantity} =
+                ${currentPrice.toFixed(2)} x {quantity} =
               </span>
               <span className="font-bold text-very-dark-blue">
-                ${(product.price * quantity).toFixed(2)}
+                ${(currentPrice * quantity).toFixed(2)}
               </span>
-            </p>
+            </div>
           </CardContent>
         </div>
       </div>

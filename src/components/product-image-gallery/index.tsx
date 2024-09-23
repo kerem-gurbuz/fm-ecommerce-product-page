@@ -11,16 +11,20 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
-import { PRODUCTS } from '@/lib/data/products';
+import type { ProductImageType } from '@/models/types';
 
-const SLIDES = PRODUCTS[0].images;
+type ProductImageGalleryProps = {
+  productImages: ProductImageType[];
+};
 
-export function ProductImageGallery() {
+export function ProductImageGallery({
+  productImages,
+}: ProductImageGalleryProps) {
   return (
-    <div className="relative mx-auto w-full md:max-w-[720px] lg:mx-0 lg:max-w-[445px]">
+    <div className="relative">
       <Carousel
         key="product-carousel--static"
-        slides={SLIDES}
+        slides={productImages}
         isInModal={false}
         carouselOptions={{ loop: false }}
         autoplayOptions={{ playOnInit: false }}
@@ -51,7 +55,7 @@ export function ProductImageGallery() {
           </DialogClose>
           <Carousel
             key="product-carousel--modal"
-            slides={SLIDES}
+            slides={productImages}
             isInModal={true}
             carouselOptions={{ loop: true }}
             autoplayOptions={{

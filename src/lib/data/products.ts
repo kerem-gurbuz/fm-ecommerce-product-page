@@ -1,22 +1,31 @@
-import type { ProductImageType, ProductType } from '@/types';
+import type { ProductDetailsType } from '@/models/types';
 
-const generateProductImages = ({
-  id,
-  length = 1,
-}: {
-  id: number;
-  length?: number;
-}): ProductImageType[] =>
-  Array.from({ length }, (_, i) => ({
-    src: `/assets/images/product-${id}-image-${i + 1}.jpg`,
-    thumbnail: `/assets/images/product-${id}-image-${i + 1}-thumbnail.jpg`,
-  }));
-
-export const PRODUCTS: ProductType[] = [
+export const PRODUCTS: ProductDetailsType[] = [
   {
     id: 'product-1',
+    company: 'Sneaker Company',
     name: 'Fall Limited Edition Sneakers',
-    images: generateProductImages({ id: 1, length: 4 }),
-    price: 125,
+    description:
+      "These low-profile sneakers are your perfect casual wear companion. Featuring a durable rubber outer sole, they'll withstand everything the weather can offer.",
+    price: 250,
+    discountPercentage: 50,
+    images: [
+      {
+        src: '/assets/images/product-1-image-1.jpg',
+        thumbnail: '/assets/images/product-1-image-1-thumbnail.jpg',
+      },
+      {
+        src: '/assets/images/product-1-image-2.jpg',
+        thumbnail: '/assets/images/product-1-image-2-thumbnail.jpg',
+      },
+      {
+        src: '/assets/images/product-1-image-3.jpg',
+        thumbnail: '/assets/images/product-1-image-3-thumbnail.jpg',
+      },
+      {
+        src: '/assets/images/product-1-image-4.jpg',
+        thumbnail: '/assets/images/product-1-image-4-thumbnail.jpg',
+      },
+    ],
   },
 ];

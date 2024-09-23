@@ -10,24 +10,25 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { PRODUCTS } from '@/lib/data/products';
 import { cn } from '@/lib/utils';
-import type { CartItemType } from '@/types';
+import type { ShoppingCartItemType } from '@/models/types';
 
 const WINDOW_SIZE_DEBOUNCE_DELAY = 100;
 const MD_BREAKPOINT = 768;
 const LG_BREAKPOINT = 1440;
 
+// TODO: Read from the global state
+const CART_ITEMS: ShoppingCartItemType[] = [
+  { id: 'cart-item-1', product: PRODUCTS[0], quantity: 3 },
+];
+
 type ShoppingCartProps = {
   className?: React.ComponentProps<'div'>['className'];
-  cartItems: CartItemType[];
   trigger: React.ReactNode;
 };
 
-export function ShoppingCart({
-  className,
-  cartItems,
-  trigger,
-}: ShoppingCartProps) {
+export function ShoppingCart({ className, trigger }: ShoppingCartProps) {
   const { width: windowWidth = 0 } = useWindowSize({
     initializeWithValue: false,
     debounceDelay: WINDOW_SIZE_DEBOUNCE_DELAY,
@@ -61,14 +62,14 @@ export function ShoppingCart({
         <div className="border-b border-b-sky-blue p-6 pb-[27px]">
           <h2 className="text-base font-bold leading-[20px]">Cart</h2>
         </div>
-        {cartItems.length > 0 ? (
+        {CART_ITEMS.length > 0 ? (
           <ScrollArea
             type="scroll"
             scrollHideDelay={1000}
             className="h-full w-full flex-1 rounded-[10px]"
           >
             <div className="space-y-6 p-6 pb-8">
-              {cartItems.map((cartItem) => (
+              {CART_ITEMS.map((cartItem) => (
                 <CartItem key={cartItem.id} cartItem={cartItem} />
               ))}
               <Button className="w-full rounded-[10px] bg-orange py-[18px] text-base font-bold leading-[20px] text-very-dark-blue transition-colors duration-300 hover:bg-bright-orange">

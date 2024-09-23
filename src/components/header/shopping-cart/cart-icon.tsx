@@ -1,19 +1,19 @@
 import { Badge } from '@/components/ui/badge';
 
+// TODO: Read from the global state
+const CART_TOTAL_QUANTITY = 3;
+
 type CartIconProps = {
-  cartTotalQuantity: number;
+  className?: React.ComponentProps<'svg'>['className'];
 };
 
-export function CartIcon({ cartTotalQuantity }: CartIconProps) {
+export function CartIcon({ className }: CartIconProps) {
   return (
     <div className="group relative inline-block">
-      <CartIconSVG
-        aria-label="Shopping cart"
-        className="fill-dark-grayish-blue transition-colors duration-300 group-hover:fill-very-dark-blue"
-      />
-      {cartTotalQuantity > 0 && (
-        <Badge className="group-hover:bg-bright-orange absolute right-0 top-0 h-[13px] w-[19px] -translate-y-[6px] translate-x-[6px] justify-center bg-orange p-0 text-[10px] font-bold leading-[12px] text-white transition-colors duration-300 group-hover:text-very-dark-blue">
-          {cartTotalQuantity}
+      <CartIconSVG aria-label="Shopping cart" className={className} />
+      {CART_TOTAL_QUANTITY > 0 && (
+        <Badge className="absolute right-0 top-0 h-[13px] w-[19px] -translate-y-[6px] translate-x-[6px] justify-center bg-orange p-0 text-[10px] font-bold leading-[12px] text-white transition-colors duration-300 group-hover:bg-bright-orange group-hover:text-very-dark-blue">
+          {CART_TOTAL_QUANTITY}
         </Badge>
       )}
     </div>

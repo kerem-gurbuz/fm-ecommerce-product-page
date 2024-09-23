@@ -14,7 +14,7 @@ import {
 } from '@/components/product-image-gallery/carousel-arrow-buttons';
 import { Thumb } from '@/components/product-image-gallery/carousel-thumbs-button';
 import { cn } from '@/lib/utils';
-import type { ProductImageType } from '@/types';
+import type { ProductImageType } from '@/models/types';
 import './carousel.css';
 
 const WINDOW_SIZE_DEBOUNCE_DELAY = 100;
@@ -119,18 +119,21 @@ export function Carousel({
       </div>
       {/* Thumbs container */}
       <div className="mt-8 hidden md:block">
-        <div className="mx-auto w-full max-w-[449px]" ref={emblaThumbsRef}>
-          <div className="flex justify-between">
-            {slides.map((slide, index) => (
-              <Thumb
-                key={index}
-                index={index}
-                slide={slide}
-                selected={index === selectedIndex}
-                onClick={() => onThumbClick(index)}
-              />
-            ))}
-          </div>
+        <div
+          ref={emblaThumbsRef}
+          className={cn('flex max-w-[445px] justify-between', {
+            'mx-auto': isInModal,
+          })}
+        >
+          {slides.map((slide, index) => (
+            <Thumb
+              key={index}
+              index={index}
+              slide={slide}
+              selected={index === selectedIndex}
+              onClick={() => onThumbClick(index)}
+            />
+          ))}
         </div>
       </div>
     </div>
