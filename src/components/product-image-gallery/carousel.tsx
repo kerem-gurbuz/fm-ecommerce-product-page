@@ -15,10 +15,8 @@ import {
 import { Thumb } from '@/components/product-image-gallery/carousel-thumbs-button';
 import { cn } from '@/lib/utils';
 import type { ProductImageType } from '@/models/types';
-// import './carousel.css';
 
-const WINDOW_SIZE_DEBOUNCE_DELAY = 100;
-const SM_BREAKPOINT = 445;
+const WINDOW_SIZE_DEBOUNCE_DELAY = 50;
 const MD_BREAKPOINT = 768;
 
 type CarouselType = {
@@ -82,16 +80,16 @@ export function Carousel({
           {slides.map((slide, index) => (
             <div
               key={index}
-              className={cn('embla__slide relative h-[445px] max-h-dvh', {
-                'h-[300px]': windowWidth < SM_BREAKPOINT,
-                'h-[550px]': isInModal,
-              })}
+              className={cn(
+                'embla__slide relative h-[445px] max-h-[calc(100dvh-67px)] max-[444px]:h-[300px] md:max-h-dvh',
+                { 'h-[550px]': isInModal },
+              )}
             >
               <Image
                 src={slide.src}
                 alt={`Product image ${index + 1}`}
                 className="object-cover object-top"
-                sizes={`(max-width: 768px) 100vw, (max-width: 1024px) 720px, ${isInModal ? '550px' : '445px'}`}
+                sizes={`(max-width: 767px) 100vw, (max-width: 1023px) 720px, ${isInModal ? '550px' : '445px'}`}
                 priority={index === 0}
                 quality={100}
                 fill
