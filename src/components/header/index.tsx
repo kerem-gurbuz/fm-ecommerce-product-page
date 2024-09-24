@@ -8,15 +8,10 @@ import {
 } from '@/components/header/navigation';
 import { CartIcon, ShoppingCart } from '@/components/header/shopping-cart';
 import { AvatarUI, UserMenuDropdown } from '@/components/header/user-menu';
-import { CART_ITEMS } from '@/lib/data/cart-items';
 import { cn } from '@/lib/utils';
 
-// TODO: Implement global state management system for the shopping cart
-
-const CART_TOTAL_QUANTITY = CART_ITEMS.reduce(
-  (acc, item) => acc + item.quantity,
-  0,
-);
+const USER_NAME = 'John Doe';
+const USER_AVATAR_IMAGE_SRC = '/assets/images/image-avatar.png';
 
 type HeaderProps = {
   className?: React.ComponentProps<'header'>['className'];
@@ -56,16 +51,17 @@ export function Header({ className }: HeaderProps) {
         <div className="flex gap-[22px] md:gap-[46px]">
           <ShoppingCart
             className="h-[256px] w-[360px]"
-            cartItems={CART_ITEMS}
-            trigger={<CartIcon cartTotalQuantity={CART_TOTAL_QUANTITY} />}
+            trigger={
+              <CartIcon className="fill-dark-grayish-blue transition-colors duration-300 group-hover:fill-very-dark-blue" />
+            }
           />
           <UserMenuDropdown
-            className="w-[150px]"
+            className="w-[175px]"
             trigger={
               <AvatarUI
-                className="h-6 w-6 hover:border-2 hover:border-orange md:h-[50px] md:w-[50px]"
-                imageSrc="/assets/images/image-avatar.png"
-                userName="Kerem Gurbuz"
+                className="h-6 w-6 transition-all duration-100 hover:border-2 hover:border-orange md:h-[50px] md:w-[50px]"
+                imageSrc={USER_AVATAR_IMAGE_SRC}
+                userName={USER_NAME}
               />
             }
           />
