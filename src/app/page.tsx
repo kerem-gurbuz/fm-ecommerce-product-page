@@ -1,4 +1,4 @@
-import { ProductDetailsCard } from '@/components/product-details-card/product-details-card';
+import { ProductDetailsCard } from '@/components/product-details-card';
 import { ProductImageGallery } from '@/components/product-image-gallery';
 import { PRODUCTS } from '@/lib/data/products';
 
@@ -14,7 +14,7 @@ export default function HomePage() {
             <ProductImageGallery productImages={CURRENT_PRODUCT.images} />
           </div>
           <div className="w-full md:max-w-[720px] lg:max-w-[445px] lg:justify-self-end">
-            <div className="space-y-6 p-6 md:space-y-8 md:p-0">
+            <div className="space-y-6 p-6 pb-0 md:space-y-8 md:p-0">
               <ProductDetailsCard productDetails={CURRENT_PRODUCT} />
             </div>
           </div>

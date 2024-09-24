@@ -15,7 +15,7 @@ import {
 import { Thumb } from '@/components/product-image-gallery/carousel-thumbs-button';
 import { cn } from '@/lib/utils';
 import type { ProductImageType } from '@/models/types';
-import './carousel.css';
+// import './carousel.css';
 
 const WINDOW_SIZE_DEBOUNCE_DELAY = 100;
 const SM_BREAKPOINT = 445;
@@ -82,8 +82,8 @@ export function Carousel({
           {slides.map((slide, index) => (
             <div
               key={index}
-              className={cn('embla__slide relative h-[300px] max-h-dvh', {
-                'h-[445px]': SM_BREAKPOINT <= windowWidth,
+              className={cn('embla__slide relative h-[445px] max-h-dvh', {
+                'h-[300px]': windowWidth < SM_BREAKPOINT,
                 'h-[550px]': isInModal,
               })}
             >
@@ -92,6 +92,7 @@ export function Carousel({
                 alt={`Product image ${index + 1}`}
                 className="object-cover object-top"
                 sizes={`(max-width: 768px) 100vw, (max-width: 1024px) 720px, ${isInModal ? '550px' : '445px'}`}
+                priority={index === 0}
                 quality={100}
                 fill
               />
@@ -118,13 +119,13 @@ export function Carousel({
         />
       </div>
       {/* Thumbs container */}
-      <div className="mt-8 hidden md:block">
-        <div
-          ref={emblaThumbsRef}
-          className={cn('flex max-w-[445px] justify-between', {
-            'mx-auto': isInModal,
-          })}
-        >
+      <div
+        ref={emblaThumbsRef}
+        className={cn('mt-8 hidden max-w-[445px] md:block', {
+          'mx-auto': isInModal,
+        })}
+      >
+        <div className="flex justify-between">
           {slides.map((slide, index) => (
             <Thumb
               key={index}
