@@ -6,11 +6,11 @@ import {
   CardFooter,
   CardHeader,
 } from '@/components/ui/card';
+import type { ProductType } from '@/lib/types/product';
 import { calculateCurrentPrice } from '@/lib/utils';
-import type { ProductDetailsType } from '@/models/types';
 
 type ProductDetailsCardProps = {
-  productDetails: ProductDetailsType;
+  productDetails: ProductType;
 };
 
 export function ProductDetailsCard({

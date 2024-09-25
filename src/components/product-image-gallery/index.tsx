@@ -11,7 +11,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
-import type { ProductImageType } from '@/models/types';
+import type { ProductImageType } from '@/lib/types/product';
 
 type ProductImageGalleryProps = {
   productImages: ProductImageType[];

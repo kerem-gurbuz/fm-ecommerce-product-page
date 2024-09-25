@@ -1,7 +1,7 @@
 import Image from 'next/image';
 
+import type { ProductImageType } from '@/lib/types/product';
 import { cn } from '@/lib/utils';
-import type { ProductImageType } from '@/models/types';
 
 type ThumbType = {
   index: number;

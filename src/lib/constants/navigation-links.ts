@@ -11,14 +11,11 @@ export type NavigationLink = {
   href: string;
 };
 
-export type NavigationLinks = Record<NAVIGATION_LABEL, NavigationLink>;
+export type NavigationLinks = NavigationLink[];
 
 export const NAVIGATION_LINKS: NavigationLinks = Object.values(
   NAVIGATION_LABEL,
-).reduce((acc, label) => {
-  acc[label] = {
-    label,
-    href: `/${label.toLowerCase()}`,
-  };
-  return acc;
-}, {} as NavigationLinks);
+).map((label) => ({
+  label,
+  href: `/${label.toLowerCase()}`,
+}));

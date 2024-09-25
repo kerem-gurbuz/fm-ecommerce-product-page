@@ -13,8 +13,8 @@ import {
   usePrevNextButtons,
 } from '@/components/product-image-gallery/carousel-arrow-buttons';
 import { Thumb } from '@/components/product-image-gallery/carousel-thumbs-button';
+import type { ProductImageType } from '@/lib/types/product';
 import { cn } from '@/lib/utils';
-import type { ProductImageType } from '@/models/types';
 
 const WINDOW_SIZE_DEBOUNCE_DELAY = 50;
 const MD_BREAKPOINT = 768;
@@ -32,7 +32,7 @@ export function Carousel({
   carouselOptions,
   autoplayOptions,
 }: CarouselType) {
-  const { width: windowWidth = 0 } = useWindowSize({
+  const { width: windowWidth = 0, height: windowHeight = 0 } = useWindowSize({
     initializeWithValue: false,
     debounceDelay: WINDOW_SIZE_DEBOUNCE_DELAY,
   });
@@ -120,6 +120,7 @@ export function Carousel({
       <div
         ref={emblaThumbsRef}
         className={cn('mt-8 hidden max-w-[445px] md:block', {
+          'lg:hidden': isInModal && windowHeight < 800,
           'mx-auto': isInModal,
         })}
       >

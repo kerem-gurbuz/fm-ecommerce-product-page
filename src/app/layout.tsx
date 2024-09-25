@@ -1,6 +1,6 @@
 import { Header } from '@/components/header';
-import { kumbh_sans } from '@/styles/fonts';
-import '@/styles/globals.css';
+import { kumbh_sans } from '@/lib/styles/fonts';
+import '@/lib/styles/globals.css';
 
 export { metadata } from '@/lib/seo/metadata';
 

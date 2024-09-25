@@ -3,11 +3,11 @@ import Image from 'next/image';
 import { TrashCanIcon } from '@/components/header/shopping-cart';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardTitle } from '@/components/ui/card';
+import type { CartItemType } from '@/lib/types/shopping-cart';
 import { calculateCurrentPrice } from '@/lib/utils';
-import type { ShoppingCartItemType } from '@/models/types';
 
 type CartItemProps = {
-  cartItem: ShoppingCartItemType;
+  cartItem: CartItemType;
 };
 
 export function CartItem({ cartItem }: CartItemProps) {

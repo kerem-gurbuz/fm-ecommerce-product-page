@@ -16,7 +16,7 @@ export function NavigationBar({ className }: NavigationBarProps) {
   return (
     <nav className={cn('pb-[11px] pt-[13px]', className)}>
       <ul className="flex h-[26px] gap-4 lg:gap-8">
-        {Object.values(NAVIGATION_LINKS).map(({ label, href }, idx) => {
+        {NAVIGATION_LINKS.map(({ label, href }, idx) => {
           const isActive = pathname === href;
           return (
             <li key={idx} className="group relative flex items-center">

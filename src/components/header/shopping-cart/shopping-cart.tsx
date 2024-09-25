@@ -11,15 +11,15 @@ import {
 } from '@/components/ui/popover';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { PRODUCTS } from '@/lib/data/products';
+import type { CartItemType } from '@/lib/types/shopping-cart';
 import { cn } from '@/lib/utils';
-import type { ShoppingCartItemType } from '@/models/types';
 
 const WINDOW_SIZE_DEBOUNCE_DELAY = 100;
 const MD_BREAKPOINT = 768;
 const LG_BREAKPOINT = 1440;
 
 // TODO: Read from the global state
-const CART_ITEMS: ShoppingCartItemType[] = [
+const CART_ITEMS: CartItemType[] = [
   { id: 'cart-item-1', product: PRODUCTS[0], quantity: 3 },
 ];
 

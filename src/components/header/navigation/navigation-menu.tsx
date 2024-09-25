@@ -26,7 +26,9 @@ type NavigationMenuProps = {
 
 export function NavigationMenu({ className, trigger }: NavigationMenuProps) {
   const [open, setOpen] = useState<boolean>(false);
+
   const pathname = usePathname();
+
   const { width: windowWidth } = useWindowSize({
     initializeWithValue: false,
     debounceDelay: WINDOW_SIZE_DEBOUNCE_DELAY,
@@ -55,7 +57,7 @@ export function NavigationMenu({ className, trigger }: NavigationMenuProps) {
         </SheetHeader>
         <nav className="mt-[67px] h-full w-full">
           <ul className="flex flex-col gap-5">
-            {Object.values(NAVIGATION_LINKS).map(({ href, label }, idx) => {
+            {NAVIGATION_LINKS.map(({ href, label }, idx) => {
               const isActive = pathname === href;
               return (
                 <li key={idx}>
