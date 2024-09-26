@@ -1,19 +1,22 @@
-import { Badge } from '@/components/ui/badge';
+'use client';
 
-// TODO: Read from the global state
-const CART_TOTAL_QUANTITY = 3;
+import { Badge } from '@/components/ui/badge';
+import { selectTotalQuantity } from '@/lib/redux-store/features/shopping-cart';
+import { useAppSelector } from '@/lib/redux-store/hooks';
 
 type CartIconProps = {
   className?: React.ComponentProps<'svg'>['className'];
 };
 
 export function CartIcon({ className }: CartIconProps) {
+  const cartTotalQuantity = useAppSelector(selectTotalQuantity);
+
   return (
     <div className="group relative inline-block">
-      <CartIconSVG aria-label="Shopping cart" className={className} />
-      {CART_TOTAL_QUANTITY > 0 && (
+      <CartIconSVG className={className} />
+      {cartTotalQuantity > 0 && (
         <Badge className="absolute right-0 top-0 h-[13px] w-[19px] -translate-y-[6px] translate-x-[6px] justify-center bg-orange p-0 text-[10px] font-bold leading-[12px] text-white transition-colors duration-300 group-hover:bg-bright-orange group-hover:text-very-dark-blue">
-          {CART_TOTAL_QUANTITY}
+          {cartTotalQuantity}
         </Badge>
       )}
     </div>

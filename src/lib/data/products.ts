@@ -1,6 +1,6 @@
-import type { ProductDetailsType } from '@/models/types';
+import type { ProductType } from '@/lib/types/product';
 
-export const PRODUCTS: ProductDetailsType[] = [
+export const PRODUCTS: ProductType[] = [
   {
     id: 'product-1',
     company: 'Sneaker Company',

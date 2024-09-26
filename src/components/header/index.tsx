@@ -31,10 +31,7 @@ export function Header({ className }: HeaderProps) {
           <NavigationMenu
             className="w-[250px]"
             trigger={
-              <MenuIcon
-                aria-label="Open navigation menu"
-                className="fill-dark-grayish-blue transition-colors duration-300 hover:fill-very-dark-blue"
-              />
+              <MenuIcon className="fill-dark-grayish-blue transition-colors duration-300 hover:fill-very-dark-blue" />
             }
           />
           <Link href="/" className="pb-[3px] pt-[1px] md:py-[15px]">
