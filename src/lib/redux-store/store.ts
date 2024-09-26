@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import productsReducer from './features/products/products-slice';
-import cartReducer from './features/shopping-cart/cart-slice';
+import { productsSlice } from './features/products/products-slice';
+import { cartSlice } from './features/shopping-cart/cart-slice';
 
 // `makeStore` encapsulates the store configuration to allow
 // creating unique store instances, which is particularly important for
@@ -10,8 +10,8 @@ import cartReducer from './features/shopping-cart/cart-slice';
 export const makeStore = () => {
   return configureStore({
     reducer: {
-      products: productsReducer,
-      cart: cartReducer,
+      products: productsSlice.reducer,
+      cart: cartSlice.reducer,
     },
   });
 };

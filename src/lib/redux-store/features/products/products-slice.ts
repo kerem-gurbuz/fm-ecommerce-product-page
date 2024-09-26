@@ -16,39 +16,32 @@ export const productsSlice = createSlice({
   reducers: {
     setProducts: (
       state,
-      { payload: { products } }: PayloadAction<{ products: ProductType[] }>,
+      action: PayloadAction<{ products: ProductType[] }>,
     ) => {
+      const { products } = action.payload;
       state.products = products;
     },
-    addProduct: (
-      state,
-      { payload: { product } }: PayloadAction<{ product: ProductType }>,
-    ) => {
-      state.products.push(product);
+    addProduct: (state, action: PayloadAction<{ newProduct: ProductType }>) => {
+      const { newProduct } = action.payload;
+      state.products.push(newProduct);
     },
     updateProduct: (
       state,
-      { payload: { product } }: PayloadAction<{ product: ProductType }>,
+      action: PayloadAction<{ updatedProduct: ProductType }>,
     ) => {
+      const { updatedProduct } = action.payload;
       const index = state.products.findIndex(
-        (existingProduct) => existingProduct.id === product.id,
+        (product) => product.id === updatedProduct.id,
       );
-
       if (index !== -1) {
-        state.products[index] = product;
+        state.products[index] = updatedProduct;
       }
     },
-    removeProduct: (
-      state,
-      { payload: { productId } }: PayloadAction<{ productId: string }>,
-    ) => {
-      const index = state.products.findIndex(
-        (existingProduct) => existingProduct.id === productId,
+    removeProduct: (state, action: PayloadAction<{ productId: string }>) => {
+      const { productId } = action.payload;
+      state.products = state.products.filter(
+        (product) => product.id !== productId,
       );
-
-      if (index !== -1) {
-        state.products.splice(index, 1);
-      }
     },
   },
   selectors: {
@@ -58,5 +51,3 @@ export const productsSlice = createSlice({
 
 export const { setProducts, addProduct, updateProduct, removeProduct } =
   productsSlice.actions;
-
-export default productsSlice.reducer;
