@@ -43,7 +43,9 @@ export function UserMenuDropdown({
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger>{trigger}</DropdownMenuTrigger>
+      <DropdownMenuTrigger aria-label="User menu">
+        {trigger}
+      </DropdownMenuTrigger>
       <DropdownMenuContent
         className={cn(
           'rounded-[10px] border-none text-[16px] leading-[26px] text-very-dark-blue shadow-[0px_20px_50px_-20px_hsla(var(--color-very-dark-blue),0.5)]',

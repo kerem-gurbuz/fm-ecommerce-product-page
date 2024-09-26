@@ -16,7 +16,7 @@ import {
 import { NAVIGATION_LINKS } from '@/lib/constants/navigation-links';
 import { cn } from '@/lib/utils';
 
-const WINDOW_SIZE_DEBOUNCE_DELAY = 200;
+const WINDOW_SIZE_DEBOUNCE_DELAY = 100;
 const MD_BREAKPOINT = 768;
 
 type NavigationMenuProps = {
@@ -26,7 +26,6 @@ type NavigationMenuProps = {
 
 export function NavigationMenu({ className, trigger }: NavigationMenuProps) {
   const [open, setOpen] = useState<boolean>(false);
-
   const pathname = usePathname();
 
   const { width: windowWidth } = useWindowSize({
@@ -42,7 +41,10 @@ export function NavigationMenu({ className, trigger }: NavigationMenuProps) {
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
-      <SheetTrigger className="pb-[4px] pt-[5px] md:hidden">
+      <SheetTrigger
+        aria-label="Navigation menu"
+        className="pb-[4px] pt-[5px] md:hidden"
+      >
         {trigger}
       </SheetTrigger>
       <SheetContent
@@ -52,7 +54,7 @@ export function NavigationMenu({ className, trigger }: NavigationMenuProps) {
         <SheetHeader className="sr-only">
           <SheetTitle>Navigation menu</SheetTitle>
           <SheetDescription>
-            This is a navigation menu for mobile devices
+            This is a navigation menu for mobile devices.
           </SheetDescription>
         </SheetHeader>
         <nav className="mt-[67px] h-full w-full">

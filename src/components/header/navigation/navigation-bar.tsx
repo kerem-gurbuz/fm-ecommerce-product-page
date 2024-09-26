@@ -24,9 +24,7 @@ export function NavigationBar({ className }: NavigationBarProps) {
                 href={href}
                 className={cn(
                   'text-[15px] leading-[26px] text-dark-grayish-blue transition-colors duration-300 group-hover:text-very-dark-blue',
-                  {
-                    'text-very-dark-blue': isActive,
-                  },
+                  { 'text-very-dark-blue': isActive },
                 )}
               >
                 {label}
@@ -34,9 +32,7 @@ export function NavigationBar({ className }: NavigationBarProps) {
               <span
                 className={cn(
                   'absolute -bottom-[45px] h-[4px] w-full bg-transparent transition-colors duration-300 group-hover:bg-orange',
-                  {
-                    'bg-orange': isActive,
-                  },
+                  { 'bg-orange': isActive },
                 )}
               />
             </li>

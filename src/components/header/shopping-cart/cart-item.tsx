@@ -1,18 +1,23 @@
+'use client';
+
 import Image from 'next/image';
 
-import { TrashCanIcon } from '@/components/header/shopping-cart';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardTitle } from '@/components/ui/card';
+import { removeFromCart } from '@/lib/redux-store/features/shopping-cart';
+import { useAppDispatch } from '@/lib/redux-store/hooks';
 import type { CartItemType } from '@/lib/types/shopping-cart';
 import { calculateCurrentPrice } from '@/lib/utils';
+import { TrashCanIcon } from './trash-can-icon';
 
 type CartItemProps = {
   cartItem: CartItemType;
 };
 
 export function CartItem({ cartItem }: CartItemProps) {
-  const { product, quantity } = cartItem;
+  const dispatch = useAppDispatch();
 
+  const { id, product, quantity } = cartItem;
   const currentPrice = calculateCurrentPrice(
     product.price,
     product.discountPercentage,
@@ -44,7 +49,10 @@ export function CartItem({ cartItem }: CartItemProps) {
           </CardContent>
         </div>
       </div>
-      <Button aria-label="Remove item from cart">
+      <Button
+        aria-label="Remove item from cart"
+        onClick={() => dispatch(removeFromCart({ cartItemId: id }))}
+      >
         <TrashCanIcon width={14} height={16} />
       </Button>
     </Card>

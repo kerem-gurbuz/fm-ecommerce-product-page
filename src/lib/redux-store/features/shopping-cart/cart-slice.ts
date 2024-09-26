@@ -69,11 +69,7 @@ export const cartSlice = createSlice({
         updateTotals(state);
       }
     },
-    clearCart: (state) => {
-      state.cartItems = [];
-      state.totalQuantity = 0;
-      state.totalPrice = 0;
-    },
+    clearCart: () => initialState,
   },
   selectors: {
     selectCartItems: (state) => state.cartItems,

@@ -1,2 +1,2 @@
-export { productImageSchema } from '@/lib/schemas/product/product-image.schema';
-export { productSchema } from '@/lib/schemas/product/product.schema';
+export { productImageSchema } from './product-image.schema';
+export { productSchema } from './product.schema';

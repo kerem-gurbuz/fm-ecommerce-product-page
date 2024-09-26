@@ -1,6 +1,5 @@
-import { Carousel } from '@/components/product-image-gallery/carousel';
-import { CloseIcon } from '@/components/product-image-gallery/close-icon';
-import { FullscreenIcon } from '@/components/product-image-gallery/fullscreen-icon';
+'use client';
+
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -11,20 +10,27 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
-import type { ProductImageType } from '@/lib/types/product';
+import { selectProductById } from '@/lib/redux-store/features/products';
+import { useAppSelector } from '@/lib/redux-store/hooks';
+import { Carousel } from './carousel';
+import { CloseIcon } from './close-icon';
+import { FullscreenIcon } from './fullscreen-icon';
 
 type ProductImageGalleryProps = {
-  productImages: ProductImageType[];
+  productId: string;
 };
 
-export function ProductImageGallery({
-  productImages,
-}: ProductImageGalleryProps) {
+export function ProductImageGallery({ productId }: ProductImageGalleryProps) {
+  const product = useAppSelector((state) =>
+    selectProductById(state, productId),
+  );
+  if (!product) return null;
+
   return (
     <div className="relative">
       <Carousel
         key="product-carousel--static"
-        slides={productImages}
+        slides={product.images}
         isInModal={false}
         carouselOptions={{ loop: false }}
         autoplayOptions={{ playOnInit: false }}
@@ -55,7 +61,7 @@ export function ProductImageGallery({
           </DialogClose>
           <Carousel
             key="product-carousel--modal"
-            slides={productImages}
+            slides={product.images}
             isInModal={true}
             carouselOptions={{ loop: true }}
             autoplayOptions={{

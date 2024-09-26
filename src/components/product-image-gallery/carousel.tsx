@@ -7,14 +7,14 @@ import Image from 'next/image';
 import { useCallback, useEffect, useState } from 'react';
 import { useWindowSize } from 'usehooks-ts';
 
+import type { ProductImageType } from '@/lib/types/product';
+import { cn } from '@/lib/utils';
 import {
   NextButton,
   PrevButton,
   usePrevNextButtons,
-} from '@/components/product-image-gallery/carousel-arrow-buttons';
-import { Thumb } from '@/components/product-image-gallery/carousel-thumbs-button';
-import type { ProductImageType } from '@/lib/types/product';
-import { cn } from '@/lib/utils';
+} from './carousel-arrow-buttons';
+import { Thumb } from './carousel-thumbs-button';
 
 const WINDOW_SIZE_DEBOUNCE_DELAY = 50;
 const MD_BREAKPOINT = 768;

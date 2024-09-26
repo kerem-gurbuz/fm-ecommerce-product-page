@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import { productImageSchema } from '@/lib/schemas/product';
+import { productImageSchema } from './product-image.schema';
 
 export const productSchema = z.object({
   id: z.string(),

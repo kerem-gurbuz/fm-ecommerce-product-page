@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import { cartItemSchema } from '@/lib/schemas/shopping-cart';
+import { cartItemSchema } from './cart-item.schema';
 
 export const cartSchema = z.object({
   cartItems: z.array(cartItemSchema),

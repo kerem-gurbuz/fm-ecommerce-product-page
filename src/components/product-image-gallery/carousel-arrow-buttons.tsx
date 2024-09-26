@@ -1,10 +1,10 @@
 import type { EmblaCarouselType } from 'embla-carousel';
 import { useCallback, useEffect, useState } from 'react';
 
-import { NextIcon } from '@/components/product-image-gallery/next-icon';
-import { PreviousIcon } from '@/components/product-image-gallery/previous-icon';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
+import { NextIcon } from './next-icon';
+import { PreviousIcon } from './previous-icon';
 
 type UsePrevNextButtonsType = {
   prevBtnDisabled: boolean;
@@ -50,19 +50,19 @@ export const usePrevNextButtons = (
 };
 
 export function PrevButton(props: React.ComponentPropsWithRef<'button'>) {
-  const { className, children, ...restProps } = props;
+  const { className, ...restProps } = props;
   return (
     <Button className={cn('z-10', className)} {...restProps}>
-      {children || <PreviousIcon />}
+      <PreviousIcon />
     </Button>
   );
 }
 
 export function NextButton(props: React.ComponentPropsWithRef<'button'>) {
-  const { className, children, ...restProps } = props;
+  const { className, ...restProps } = props;
   return (
     <Button className={cn('z-10', className)} {...restProps}>
-      {children || <NextIcon />}
+      <NextIcon />
     </Button>
   );
 }
