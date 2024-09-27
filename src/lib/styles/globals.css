@@ -2,6 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
+/* style guide colors */
+@layer base {
+  :root {
+    --color-orange: 26, 100%, 55%;
+    --color-pale-orange: 25, 100%, 94%;
+    --color-very-dark-blue: 220, 13%, 13%;
+    --color-dark-grayish-blue: 219, 9%, 45%;
+    --color-grayish-blue: 220, 14%, 75%;
+    --color-light-grayish-blue: 223, 64%, 98%;
+
+    /* additional colors */
+    --color-bright-orange: 26, 100%, 71%;
+    --color-sky-blue: 219, 35%, 92%;
+    --color-pale-sky: 220, 59%, 98%;
+  }
+}
+
+/* shadcn-ui colors */
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -63,6 +81,26 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background font-sans text-foreground;
   }
+}
+
+/* embla carousel */
+.embla {
+  --slide-spacing: 1rem;
+  --slide-size: 100%;
+}
+.embla__viewport {
+  overflow: hidden;
+}
+.embla__container {
+  display: flex;
+  touch-action: pan-y pinch-zoom;
+  margin-left: calc(var(--slide-spacing) * -1);
+}
+.embla__slide {
+  transform: translate3d(0, 0, 0);
+  flex: 0 0 var(--slide-size);
+  min-width: 0;
+  padding-left: var(--slide-spacing);
 }
